@@ -5,10 +5,12 @@ const isTokenValid = async (req, res, next) => {
     // console.log(req.headers.token);
     const response = await User.findOne({ token: req.headers.token });
     if (response) {
+      // console.log(response);
       req.admin = response;
       return next();
-    } else
+    } else {
       res.status(401).json({ message: "Le token fourni n'est pas valide" });
+    }
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: error.message });

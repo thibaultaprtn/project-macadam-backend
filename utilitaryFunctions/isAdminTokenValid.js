@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 const isAdminTokenValid = async (req, res, next) => {
   try {
-    console.log(req.headers.token);
+    // console.log(req.headers.token);
     const response = await User.findOne({ token: req.headers.token });
     if (response.username) {
       // req.admin = response;
@@ -12,7 +12,7 @@ const isAdminTokenValid = async (req, res, next) => {
       // console.log(tab);
       // console.log(tab.indexOf(response.username));
       if (tab.indexOf(response.username) !== -1) {
-        console.log("requete admin");
+        // console.log("requete admin");
         return next();
       } else {
         res
