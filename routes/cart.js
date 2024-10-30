@@ -4,12 +4,12 @@ router.use(express.json());
 
 const Cart = require("../models/Cart");
 
-router.post("/", async (req, res) => {
-  try {
-    console.log(req.body);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+const isAdminTokenValid = require("../utilitaryFunctions/isAdminTokenValid");
+const addCart = require("../utilitaryFunctions/addCart");
+const getCarts = require("../utilitaryFunctions/getCarts");
+
+router.post("/", addCart);
+
+router.get("/", isAdminTokenValid, getCarts);
 
 module.exports = router;

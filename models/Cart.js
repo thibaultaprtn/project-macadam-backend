@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const Cart = mongoose.model("Cart", {
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  username: { type: String, default: "" },
   items: [
     {
       _id: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
       quantity: Number,
     },
   ],
-  isActive: Boolean,
+  isActive: { type: Boolean, default: true },
 });
 
 module.exports = Cart;
